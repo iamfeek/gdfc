@@ -9,7 +9,7 @@
           :key="category.name"
           v-for="category in section.categories"
         >
-          <div class="card" >
+          <div :id="category.name" class="card" @click="select(category)">
             <div class="card-content">
               <p class="title">
                 {{category.name}}
@@ -25,6 +25,11 @@
 
 <script>
 export default {
+  methods: {
+    select: function(category) {
+      console.log(category);
+    }
+  },
   name: "Section",
   props: ["section"]
 }
