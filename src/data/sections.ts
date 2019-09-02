@@ -7,6 +7,7 @@ const sections: ISection[] = [
     name: 'Basic Words',
     categories: [
       {
+        slug: 'fruits',
         name: 'Fruits',
         wordPairs: [
           {
@@ -26,6 +27,7 @@ const sections: ISection[] = [
         ],
       },
       {
+        slug: 'vehicles',
         name: 'Vehicles',
         wordPairs: [
           {

@@ -9,7 +9,7 @@
           :key="category.name"
           v-for="category in section.categories"
         >
-          <div :id="category.name" class="card" @click="select(category)">
+          <div class="card" @click="select(section, category)">
             <div class="card-content">
               <p class="title">
                 {{category.name}}
@@ -26,12 +26,13 @@
 <script>
 export default {
   methods: {
-    select: function(category) {
-      console.log(category);
+    select: function(section, category) {
+      // .../basic/fruits
+      this.$router.push({ path: `${section.slug}/${category.slug}` });
     }
   },
   name: "Section",
-  props: ["section"]
+  props: ['section']
 }
 </script>
 

@@ -3,7 +3,7 @@ import Category from '@/views/Category.vue';
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/category', component: Category },
+    { path: '/basic/:category', component: Category,  props: true },
 ];
 
 export default routes;

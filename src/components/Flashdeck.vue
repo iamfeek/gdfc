@@ -1,27 +1,26 @@
 <template>
   <div class="fc-section">
     <h1 class="is-size-3">
-        {{section.name}}
+      {{categoryName}}
+    </h1>
+    <h1 class="is-size-3">
+        {{categoryName}}
+        {{data.name}}
+        {{data.wordPairs.length}}
       </h1>
       <div class="columns">
         <div
           class="column is-one-quarter is-mobile"
-          :key="category.name"
-          v-for="category in section.categories"
+          :key="wordpair.word"
+          v-for="wordpair in data.wordPairs"
         >
           <div class="card" >
             <div class="card-content">
-                <div
-                    class="column is-half is-mobile"
-                    :key="wordPair.name"
-                    v-for="wordPair in category.wordPairs"
-                >
                 <p class="title">
-                    {{wordPair.word}}
+                    {{wordpair.word}}
                 </p>
-              
                 <figure class="image is-128x128">
-                    <img :src="wordPair.image.url">
+                    <img :src="wordpair.image.url">
                 </figure>
             </div>
             </div>
@@ -31,19 +30,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+<script>
+import CategoryRepo from '@/repositories/CategoryRepo';
+const CatRepo = new CategoryRepo();
 
-// interfaces
-import ISection from '@/interfaces/ISection'
+var data = null;
 
-@Component({
-    props: {
-        section: Object
-    }
-})
-export default class Flashdeck extends Vue {
+export default {
+  data: () => ({
+    data: data,
+  }),
+  created() {
+    data = CatRepo.getAllWordPairs(this.categoryName);
+    console.log("categoryName: " + this.categoryName);
+    console.log("data: " + data);
+  },
+  name: "Section",
+  props: ['categoryData', 'categoryName']
 }
 </script>
 
